@@ -1,4 +1,5 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
+import { handleBLE } from "./ble";
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
@@ -15,6 +16,7 @@ const createWindow = (): void => {
         },
     });
 
+    handleBLE(mainWindow);
     mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
     if (process.env.NODE_ENV == "development")
         mainWindow.webContents.openDevTools({ mode: "detach" });

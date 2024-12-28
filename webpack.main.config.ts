@@ -5,6 +5,7 @@ import { plugins } from "./webpack.plugins";
 
 export const mainConfig: Configuration = {
     entry: "./src/main/index.ts",
+    target: "electron-renderer",
     module: {
         rules,
     },
